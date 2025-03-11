@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: chat-app
+  data:
+    mongodb:
+      url: ${DB_URL}
+
+#logging:
+#  level:
+#    root: debug

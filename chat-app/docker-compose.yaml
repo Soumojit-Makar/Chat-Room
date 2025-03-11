@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-db:/data/db
+    networks:
+      - app-network
+
+
+  boot-app:
+    image: soumojit2003/chat-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - B_URL=mongodb://mongo:27017/chat_app
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+volumes:
+  mongo-db:
+networks:
+  app-network:
